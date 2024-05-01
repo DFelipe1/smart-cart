@@ -3,6 +3,7 @@ import { BadgeDollarSign, MoreVertical, ShoppingBasket } from 'lucide-react-nati
 import { Text, View } from 'react-native';
 import { Button } from './Button';
 import { colors } from '@/styles/colors';
+import { Link } from 'expo-router';
 
 type Props = {
   shop: Shop
@@ -10,7 +11,7 @@ type Props = {
 
 export function Shopping({ shop }: Props ) {
   return (
-    <View className='w-full h-28 p-3 flex-row justify-between bg-gray-500 border border-gray-400 rounded-lg mb-3'>
+    <Link href={'/cart'} className='w-full h-28 p-3 flex-row justify-between bg-gray-500 border border-gray-400 rounded-lg mb-3'>
       <View className='flex-row gap-4 items-center'>
         <View className='p-4 bg-gray-600 rounded-lg justify-center shadow-sm'>
           <ShoppingBasket size={28} color={colors.white}/>
@@ -35,6 +36,6 @@ export function Shopping({ shop }: Props ) {
           <MoreVertical size={24} color={colors.gray[300]}/>
         </Button>
       </View>
-    </View>
+    </Link>
   );
 }
