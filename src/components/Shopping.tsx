@@ -1,17 +1,26 @@
 import { Shop } from '@/types/shop';
 import { BadgeDollarSign, MoreVertical, ShoppingBasket } from 'lucide-react-native';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { Button } from './Button';
 import { colors } from '@/styles/colors';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 
 type Props = {
   shop: Shop
 }
 
+
+
+
+
 export function Shopping({ shop }: Props ) {
+
+  function navigate() {
+    router.navigate({pathname: '/cart/[id]', params: { id: shop.id}})
+  }
+
   return (
-    <Link href={'/cart'} className='w-full h-28 p-3 flex-row justify-between bg-gray-500 border border-gray-400 rounded-lg mb-3'>
+    <Pressable onPress={navigate} className='w-full h-28 p-3 flex-row justify-between bg-gray-500 border border-gray-400 rounded-lg mb-3'>
       <View className='flex-row gap-4 items-center'>
         <View className='p-4 bg-gray-600 rounded-lg justify-center shadow-sm'>
           <ShoppingBasket size={28} color={colors.white}/>
@@ -28,7 +37,7 @@ export function Shopping({ shop }: Props ) {
           <View className='flex-row items-center gap-1'>
             <BadgeDollarSign size={18} color={colors.green[400]}/>
             <Text className='text-green-400 text-lg font-semibold leading-tight'>
-              {shop.price}
+              {shop.price.toFixed(2)}
             </Text>
           </View>  
         </View>
@@ -36,6 +45,6 @@ export function Shopping({ shop }: Props ) {
           <MoreVertical size={24} color={colors.gray[300]}/>
         </Button>
       </View>
-    </Link>
+    </Pressable>
   );
 }

@@ -4,5 +4,5 @@ export type Items = {
     category: string
     unity: number
     metric: string
-    price: string
+    price: number
 }
