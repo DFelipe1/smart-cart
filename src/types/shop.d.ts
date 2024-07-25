@@ -5,5 +5,5 @@ export type Shop = {
     name: string
     date: string
     price?: price
-    items: null | Items
+    items: null | Items[]
 }
