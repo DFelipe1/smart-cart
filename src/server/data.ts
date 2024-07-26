@@ -1,77 +1,28 @@
-export const data = [
-    {
-        id: "1",
-        name: "Festunha da minha gata",
-        date: "06/Jun - 9AM",
-        price: 25.90,
-        items:[ 
-            {
-                id: "1",
-                name: "Batata",
-                category: "fruta",
-                unity: 2,
-                metric: "Kg",
-                price: 25.90,
-            },
-            {
-                id: "2",
-                name: "Batata",
-                category: "fruta",
-                unity: 2,
-                metric: "Kg",
-                price: 25.90,
-            },
-            {
-                id: "3",
-                name: "Batata",
-                category: "fruta",
-                unity: 2,
-                metric: "Kg",
-                price: 25.90,
-            },
-        ]
+import { Items } from '@/types/Item';
+import { Shop } from '@/types/shop';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 
-    },
-    {
-        id: "2",
-        name: "Compras do mês",
-        date: "06/Jun",
-        price: 25.90,
-        items:[ 
-            {
-                id: "1",
-                name: "Batata",
-                category: "fruta",
-                unity: 2,
-                metric: "Kg",
-                price: 25.90,
-            }
-        ]
+class Shops {
+    private shop: Shop[] = []
 
-    },
-    {
-        id: "3",
-        name: "sacolão",
-        date: "06/Jun",
-        price: 25.90,
-        items:[ 
-            {
-                id: "1",
-                name: "Batata",
-                category: "fruta",
-                unity: 2,
-                metric: "Kg",
-                price: 25.90,
-            },
-            {
-                id: "2",
-                name: "Batata",
-                category: "fruta",
-                unity: 2,
-                metric: "Kg",
-                price: 25.90,
-            },
-        ]
+    create(data: Shop){
+        data.id = uuidv4()
+        data.price = 0.00
+        data.isGetting = false
+        data.items = []
+        this.shop.push(data)
+    }
 
-    },
-];
+    addItem(id: string, item: Items){
+        this.shop.find(s => s.id === id)?.items?.push(item)
+    }
+
+    getAll(){
+        return this.shop
+    }
+}
+
+export const shops = new Shops();
+
+shops.create({name: "Festunha da minha gata",date: "06/Jun - 9AM"})

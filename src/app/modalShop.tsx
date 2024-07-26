@@ -1,22 +1,12 @@
 import { Button } from '@/components/Button';
 import DropdownComponent from '@/components/Dropdown';
+import { Input } from '@/components/Input';
+import { shops } from '@/server/data';
 import { colors } from '@/styles/colors';
 import { Link } from 'expo-router';
 import { ArrowLeft } from 'lucide-react-native';
+import { useState } from 'react';
 import { SafeAreaView, Text, TextInput, View } from 'react-native';
-const categories = [
-    { label: 'Padaria', value: '1' },
-    { label: 'Legume', value: '2' },
-    { label: 'Carne', value: '3' },
-    { label: 'Fruta', value: '4' },
-    { label: 'Bebida', value: '5' },
-];
-
-const metrics = [
-    { label: 'Un.', value: '1' },
-    { label: 'L.', value: '2' },
-    { label: 'Kg.', value: '3' },
-];
 
 interface ModalShopProps {
     setIsOpenModal: (value: boolean) => void
@@ -24,6 +14,13 @@ interface ModalShopProps {
 
 export function ModalShop({ setIsOpenModal }: ModalShopProps) {
 
+    const [ name, setName ] = useState('')
+    const [ date, setDate ] = useState('')
+
+    function handleCreateShop(){
+        shops.create({name, date})
+        setIsOpenModal(false)
+    }
 
   return (
     <View className='w-screen h-screen p-8 pt-16 absolute z-10 inset-0 bg-gray-700/90'>
@@ -35,22 +32,19 @@ export function ModalShop({ setIsOpenModal }: ModalShopProps) {
                 <Text className='text-white text-lg font-bold'>Criando lista de compras</Text>
             </View>
             <SafeAreaView className='gap-3'>
-                <View className='gap-2'>
-                    <Text className='text-gray-200'>Nome:</Text>
-                    <TextInput
-                        className='w-full p-2 bg-gray-500 border border-gray-300/30 rounded-md'
-                    />
-                </View>
+                <Input 
+                    label='Nome' 
+                    placeholder='Digite o nome que vc quer dar para essa compra'
+                    onChangeText={setName}   
+                />
+                <Input 
+                    label='Data previa' 
+                    placeholder='Qual data pretende fazer essas compras'
+                    onChangeText={setDate}
+                />
 
-                <View className='gap-2'>
-                    <Text className='text-gray-200'>Data Prevista:</Text>
-                    <TextInput
-                        className='w-full p-2 bg-gray-500 border border-gray-300/30 rounded-md'
-                    />
-                </View>
-
-                <Button className='w-full bg-green-400 rounded-full py-2 mt-4'>
-                    <Text className='text-white w-full text-center text-lg font-medium'>Adicionar</Text>
+                <Button onPress={handleCreateShop} className='w-full bg-green-400 rounded-full py-2 mt-4'>
+                    <Text className='text-white w-full text-center text-lg font-medium'>Criar</Text>
                 </Button>
             </SafeAreaView>
         </View>

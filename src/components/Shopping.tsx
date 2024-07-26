@@ -37,7 +37,7 @@ export function Shopping({ shop }: Props ) {
           <View className='flex-row items-center gap-1'>
             <BadgeDollarSign size={18} color={colors.green[400]}/>
             <Text className='text-green-400 text-lg font-semibold leading-tight'>
-              {shop.price.toFixed(2)}
+              {shop.price?.toFixed(2)}
             </Text>
           </View>  
         </View>

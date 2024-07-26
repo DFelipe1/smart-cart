@@ -1,9 +1,10 @@
 import { Items } from "@/types/Item"
 
 export type Shop = {
-    id: string
+    id?: string
     name: string
     date: string
-    price?: price
-    items: null | Items[]
+    price?: number
+    isGetting?: false
+    items?: Item[]
 }

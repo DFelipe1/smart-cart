@@ -1,5 +1,6 @@
 import { Button } from '@/components/Button';
 import DropdownComponent from '@/components/Dropdown';
+import { Input } from '@/components/Input';
 import { colors } from '@/styles/colors';
 import { Link } from 'expo-router';
 import { ArrowLeft } from 'lucide-react-native';
@@ -32,15 +33,13 @@ export function ModalItem({ setIsOpenModal }: ModalItemProps) {
                 <Button onPress={() => setIsOpenModal(false)}>
                     <ArrowLeft size={24} color={colors.gray[300]}/>
                 </Button>
-                <Text className='text-white text-lg font-bold'>Criando lista de compras</Text>
+                <Text className='text-white text-lg font-bold'>Qual item vai comprar?</Text>
             </View>
             <SafeAreaView className='gap-3'>
-                <View className='gap-2'>
-                    <Text className='text-gray-200'>Nome:</Text>
-                    <TextInput
-                        className='w-full p-2 bg-gray-500 border border-gray-300/30 rounded-md'
-                    />
-                </View>
+                <Input 
+                    label='Nome' 
+                    placeholder='Digite o nome que vc quer dar para essa compra' 
+                />
 
                 <View className='gap-2'>
                     <Text className='text-gray-200'>Categoria:</Text>
@@ -58,13 +57,8 @@ export function ModalItem({ setIsOpenModal }: ModalItemProps) {
                         </View>
                     </View>
                     
-                    <View className='gap-2 flex-1'>
-                        <Text className='text-gray-200'>Valor estimado:</Text>
-                        <TextInput
-                            className='p-2 bg-gray-500 border border-gray-300/30 rounded-md'
-                            keyboardType='numeric'
-                        />
-                    </View>
+                    <Input label='Valor estimado' placeholder='Qual o valor desse produto?' keyboardType='numeric' />
+                    
                 </View>
 
                 
