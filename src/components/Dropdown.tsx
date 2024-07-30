@@ -10,10 +10,11 @@ interface Item {
 
 interface DropdownComponentProps {
   data: Item[]
+  value: string
+  setValue: (value: string) => void
 }
 
-const DropdownComponent = ({data}: DropdownComponentProps) => {
-  const [value, setValue] = useState("");
+const DropdownComponent = ({data, setValue, value}: DropdownComponentProps) => {
   const [isFocus, setIsFocus] = useState(false);
 
   return (

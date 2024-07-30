@@ -8,7 +8,6 @@ import { FlatList, Text, View } from "react-native";
 
 import { shops } from '@/server/data'
 import { useEffect, useState } from "react";
-import { Items } from "@/types/Item";
 import { ModalItem } from "./modalItem";
 
 
@@ -17,7 +16,7 @@ export default function Card() {
 
     const { id } = useLocalSearchParams();
 
-    const [ totalPrice, settotalPrice ] = useState(0)
+    const [ totalPrice, setTotalPrice ] = useState(0)
     const [isOpenModal, setIsOpenModal] = useState(false)
 
     const data = shops.getAll()
@@ -29,13 +28,16 @@ export default function Card() {
 
     function calcPrice() {
         let total = 0
-        shop?.items?.map((item) => total += item.price)
-        settotalPrice( totalPrice + total)
+        setTotalPrice(0)
+        if(shop?.items !== undefined && shop.items.length > 0){
+            shop.items.map((item) => total += item.price)
+            setTotalPrice(total)
+        }
     }
 
     useEffect(() => {
         calcPrice()
-    },[])
+    },[isOpenModal])
 
     return (
         <View className="flex-1 gap-6 bg-gray-700 p-8 pt-16 relative">
@@ -66,7 +68,10 @@ export default function Card() {
             </Button>
 
             {isOpenModal && (
-                <ModalItem setIsOpenModal={setIsOpenModal}/>
+                <ModalItem 
+                    setIsOpenModal={setIsOpenModal}
+                    id={id}
+                />
             )}
         </View>
     )

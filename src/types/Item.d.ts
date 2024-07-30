@@ -5,4 +5,5 @@ export type Items = {
     unity: number
     metric: string
     price: number
+    isGetting: boolean
 }

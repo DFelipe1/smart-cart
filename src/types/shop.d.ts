@@ -5,6 +5,5 @@ export type Shop = {
     name: string
     date: string
     price?: number
-    isGetting?: false
     items?: Item[]
 }

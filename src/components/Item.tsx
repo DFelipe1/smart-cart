@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AppleIcon, BadgeDollarSign, MoreVertical, ShoppingBasket } from 'lucide-react-native';
+import { AppleIcon, BadgeDollarSign, MoreVertical, Trash2 } from 'lucide-react-native';
 import { Switch, Text, View } from 'react-native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
@@ -7,6 +7,7 @@ import { Button } from './Button';
 import { colors } from '@/styles/colors';
 import { Items } from '@/types/Item';
 import clsx from 'clsx';
+import { IconCategory } from './IconCategory';
 
 type Props = {
   item: Items
@@ -16,10 +17,9 @@ export function Item({item} : Props) {
 
   const [ isShop, setIsShop ] = useState(false)
 
-
   return (
     <View 
-      className={clsx('w-full h-28 p-3 flex-row justify-between bg-gray-500 border border-gray-400 rounded-lg mb-3', {
+      className={clsx('relative w-full h-28 p-3 flex-row justify-between bg-gray-500 border border-gray-400 rounded-lg mb-3', {
         'opacity-50': isShop
       })}
       
@@ -46,7 +46,7 @@ export function Item({item} : Props) {
                 {item.name}
               </Text>
             <View>
-              <AppleIcon size={16} color={colors.gray[300]}/>
+              <IconCategory type={item.category}/>
             </View>
           </View>
           <Text className={clsx('text-gray-300 text-sm font-regular leading-tight',{
@@ -66,8 +66,8 @@ export function Item({item} : Props) {
             </Text>
           </View>  
         </View>
-        <Button>
-          <MoreVertical size={24} color={colors.gray[300]}/>
+        <Button  className='w-fit h-28 -right-3  fixed px-2 justify-center bg-gray-400 border border-gray-500'>
+          <Trash2 size={24} color={colors.red[400]}/>
         </Button>
       </View>
     </View>

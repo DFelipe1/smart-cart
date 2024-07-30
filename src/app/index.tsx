@@ -6,7 +6,7 @@ import { colors } from "@/styles/colors";
 import { ListFilter, Plus } from "lucide-react-native";
 import { FlatList, Text, View } from "react-native";
 import { ModalShop } from "./modalShop";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
 
@@ -26,7 +26,7 @@ export default function Home() {
             </View>
 
                 
-            <FlatList data={data} renderItem={({item}) => <Shopping key={item.id} shop={item}/>} keyExtractor={item => item.id || '0'}/>
+            <FlatList data={data} renderItem={({item}) => <Shopping  key={item.id} shop={item}/>} keyExtractor={item => item.id || '0'}/>
             
             <Button onPress={() => setIsOpenModal(true)} className="w-10 h-10 p-8 justify-center items-center bg-white rounded-full absolute bottom-10 right-8 shadow">
                 <Plus size={32} color={colors.gray[700]}/>
